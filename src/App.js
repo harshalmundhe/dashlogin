@@ -8,17 +8,23 @@ import "bootstrap/dist/js/bootstrap";
 
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute'
-
+import User from './components/User'
+import AddEditUser from  './components/AddEditUser'
 
 
 
 function App() {
-  let authenticated =  localStorage.getItem("authenticated");
+  let isAuth = JSON.parse(localStorage.getItem('userData'));
   return (
       
       <BrowserRouter>
       <Routes>
-        <Route path="/" element={authenticated ? <Dashboard /> : <Login />} />
+        <Route path="/" element={
+          isAuth ?
+            <Dashboard />
+          :
+            <Login />
+        } />
         <Route path="login" element={<Login />} />
         <Route
           path="/dashboard"
@@ -28,6 +34,23 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute>
+              <User />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/addedituser"
+          element={
+            <PrivateRoute>
+              <AddEditUser />
+            </PrivateRoute>
+          }
+        />
+
       </Routes>
       </BrowserRouter>
     

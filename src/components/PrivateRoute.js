@@ -1,15 +1,16 @@
 import React from 'react';
-import {  Navigate, useNavigate  } from 'react-router-dom';
+import {  Navigate  } from 'react-router-dom';
 function PrivateRoute({ children }) {
-  let authenticated =  localStorage.getItem("authenticated");
-  console.log("here => " + authenticated);
-  const navigate = useNavigate();
-    
-    if(authenticated) {
+  
+  
+
+  let isAuth = JSON.parse(localStorage.getItem('userData'));
+    if(isAuth && isAuth !== null) {
       return  <>{children}</>
     } else {
-      return navigate("/login");
+      return <Navigate to="/login" replace />;
     }
+    
   
 }
 export default PrivateRoute;

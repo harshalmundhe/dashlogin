@@ -12,33 +12,46 @@ function Login() {
   const [pass, setPass] = useState('');
   const [msg, setMsg] = useState('');
   const [showMsg, setShowMsg] = useState(false);
-  const [authenticated, setauthenticated] = useState(localStorage.getItem("authenticated"));
+  
+
+  useEffect(() => {
+    let isAuth = JSON.parse(localStorage.getItem('userData'));
+    if(isAuth && isAuth !== null) {
+        navigate("/dashboard");
+    }});
 
   
   useEffect(() => {
     setMsg('');
     setShowMsg(false)
-  }, [username, pass])
+  }, [username, pass]);
 
-
-  if(authenticated) {
-    navigate("/dashboard");
-  }
+  
 
 
   async function checklogin(e) {
     e.preventDefault();
-    const response = await  axios.get(LOGIN_API, {
-      username: username,
-      pass: pass
-    },{
-      headers: {"Access-Control-Allow-Origin": "*", 'Content-Type': 'application/json'}
-    });
-    setMsg(response.data.data.message);
-    setShowMsg(true);
-    setauthenticated(true)
-    localStorage.setItem("authenticated", true);
-    navigate("/dashboard");
+    
+    try {
+      const response = await  axios.post(LOGIN_API, {
+        username: username,
+        password: pass
+      },{
+        headers: {"Access-Control-Allow-Origin": "*", 'Content-Type': 'application/json'}
+      });
+      console.log(response);
+      localStorage.setItem("userData", JSON.stringify(response.data));
+
+      navigate('/dashboard');
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        setMsg(error.response.data.message);
+        setShowMsg(true)
+      }
+    }
+    
+    
     
   }
 
@@ -75,7 +88,7 @@ function Login() {
                     <div className="col-12">
                       <label htmlFor="yourUsername" className="form-label">Username</label>
                       <div className="input-group has-validation">
-                        <span className="input-group-text" id="inputGroupPrepend">@</span>
+                        <span className="input-group-text" id="inputGroupPrepend"><i className='bi bi-person'></i></span>
                         <input type="text" name="username" className="form-control" id="yourUsername" value={username} onChange={(e) => {setUsername(e.target.value)}} required />
                         <div className="invalid-feedback">Please enter your username.</div>
                       </div>
@@ -84,7 +97,7 @@ function Login() {
                     <div className="col-12">
                       <label htmlFor="yourPassword" className="form-label">Password</label>
                       <div className="input-group has-validation">
-                        <span className="input-group-text" id="inputGroupPrepend">*</span>
+                        <span className="input-group-text" id="inputGroupPrepend"><i className=' bi bi-lock'></i></span>
                       <input type="password" name="password" className="form-control" id="yourPassword" onChange={(e) => {setPass(e.target.value)}} required />
                       <div className="invalid-feedback">Please enter your password!</div>
                       </div>

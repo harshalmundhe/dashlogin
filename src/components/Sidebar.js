@@ -7,7 +7,7 @@ function Sidebar() {
   const navigate = useNavigate();
 
   function doLogoutAction() {
-    localStorage.setItem("authenticated", false);
+    localStorage.removeItem("userData");
     navigate("/login");
   }
 
@@ -256,7 +256,7 @@ function Sidebar() {
         </a>
         <ul id="user-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="user">
               <i className="bi bi-circle"></i><span>Manage Users</span>
             </a>
           </li>
