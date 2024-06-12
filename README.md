@@ -6,5 +6,11 @@ npm install
 
 npm start
 
-#api details
-https://dummyjson.com/docs/users
+
+User login
+http://localhost:3000/login
+
+Admin login
+http://localhost:3000/admin
+
+For local cred check src/data/user.json
