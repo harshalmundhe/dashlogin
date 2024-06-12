@@ -1,27 +1,25 @@
 import React from 'react'
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const loginData = JSON.parse(localStorage.getItem('loginData'))
 
   const navigate = useNavigate();
 
   function doLogoutAction() {
-    localStorage.removeItem("userData");
-    navigate("/login");
+    localStorage.removeItem("loginData");
+    navigate("/admin");
   }
-
 
   return (
     <>
     <header id="header" className="header fixed-top d-flex align-items-center">
-      
         <div className="d-flex align-items-center justify-content-between">
-          <a href="index.html" className="logo d-flex align-items-center">
+          <div className="logo d-flex align-items-center">
             <img src="assets/img/logo.png" alt="" />
-            <span className="d-none d-lg-block">NiceAdmin</span>
-          </a>
-          <i className="bi bi-list toggle-sidebar-btn"></i>
+            <span className="d-none d-lg-block">Simple Dashboard</span>
+          </div>
         </div>
         <div className="search-bar">
       <form className="search-form d-flex align-items-center" method="POST" action="#">
@@ -34,22 +32,22 @@ function Sidebar() {
       <ul className="d-flex align-items-center">
 
         <li className="nav-item d-block d-lg-none">
-          <a className="nav-link nav-icon search-bar-toggle " href="#">
+          <div className="nav-link nav-icon search-bar-toggle">
             <i className="bi bi-search"></i>
-          </a>
+          </div>
         </li>
 
         <li className="nav-item dropdown">
 
-          <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <div className="nav-link nav-icon" data-bs-toggle="dropdown">
             <i className="bi bi-bell"></i>
             <span className="badge bg-primary badge-number">4</span>
-          </a>
+          </div>
 
           <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li className="dropdown-header">
               You have 4 new notifications
-              <a href="#"><span className="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              <span className="badge rounded-pill bg-primary p-2 ms-2">View all</span>
             </li>
             <li>
               <hr className="dropdown-divider" />
@@ -107,7 +105,7 @@ function Sidebar() {
               <hr className="dropdown-divider" />
             </li>
             <li className="dropdown-footer">
-              <a href="#">Show all notifications</a>
+              Show all notifications
             </li>
 
           </ul>
@@ -116,64 +114,58 @@ function Sidebar() {
 
         <li className="nav-item dropdown">
 
-          <a className="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <div className="nav-link nav-icon" data-bs-toggle="dropdown">
             <i className="bi bi-chat-left-text"></i>
             <span className="badge bg-success badge-number">3</span>
-          </a>
+          </div>
 
           <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li className="dropdown-header">
               You have 3 new messages
-              <a href="#"><span className="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              <span className="badge rounded-pill bg-primary p-2 ms-2">View all</span>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
 
             <li className="message-item">
-              <a href="#">
                 <img src="assets/img/messages-1.jpg" alt="" className="rounded-circle" />
                 <div>
                   <h4>Maria Hudson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
                   <p>4 hrs. ago</p>
                 </div>
-              </a>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
 
             <li className="message-item">
-              <a href="#">
                 <img src="assets/img/messages-2.jpg" alt="" className="rounded-circle" />
                 <div>
                   <h4>Anna Nelson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
                   <p>6 hrs. ago</p>
                 </div>
-              </a>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
 
             <li className="message-item">
-              <a href="#">
                 <img src="assets/img/messages-3.jpg" alt="" className="rounded-circle" />
                 <div>
                   <h4>David Muldon</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
                   <p>8 hrs. ago</p>
                 </div>
-              </a>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
 
             <li className="dropdown-footer">
-              <a href="#">Show all messages</a>
+              Show all messages
             </li>
 
           </ul>
@@ -182,60 +174,19 @@ function Sidebar() {
 
         <li className="nav-item dropdown pe-3">
 
-          <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
-            <span className="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a>
+          <div className="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
+            <span className="d-none d-md-block dropdown-toggle ps-2">{loginData.username}</span>
+          </div>
 
           <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li className="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
-            </li>
             <li>
-              <hr className="dropdown-divider" />
-            </li>
-
-            <li>
-              <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i className="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-
-            <li>
-              <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i className="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-
-            <li>
-              <a className="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i className="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-
-            <li>
-              <a className="dropdown-item d-flex align-items-center" onClick={doLogoutAction}>
+              <div className="dropdown-item d-flex align-items-center" onClick={doLogoutAction}>
                 <i className="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
-              </a>
+              </div>
             </li>
-
           </ul>
         </li>
-
       </ul>
     </nav>
 
@@ -244,24 +195,17 @@ function Sidebar() {
     <ul className="sidebar-nav" id="sidebar-nav">
 
       <li className="nav-item">
-        <a className="nav-link collapsed" href="index.html">
+        <Link className="nav-link collapsed" to={'/admin/dashboard'}>
           <i className="bi bi-grid"></i>
           <span>Dashboard</span>
-        </a>
+        </Link>
       </li>
 
       <li className="nav-item">
-        <a className="nav-link collapsed" data-bs-target="#user-nav" data-bs-toggle="collapse" href="#">
-          <i className="bi bi-person"></i><span>Users</span><i className="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="user-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="user">
-              <i className="bi bi-circle"></i><span>Manage Users</span>
-            </a>
-          </li>
-          
-        </ul>
+        <Link className="nav-link collapsed" to={'/admin/users'}>
+          <i className="bi bi-person"></i>
+          <span>Users</span>
+        </Link>
       </li>
 
 

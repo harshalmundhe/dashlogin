@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "name": "Dharmjeet Vaishnav",
+    "email": "dharmjeetvaishnav@gmail.com",
+    "username": "dharmjeet",
+    "password": "Test123",
+    "isAdmin": false
+  },
+  {
+    "id": "2",
+    "name": "Harshal Mundhe",
+    "email": "harshalmundhe.gmail.com",
+    "username": "harshal",
+    "password": "Test123",
+    "isAdmin": false
+  },
+  {
+    "id": "3",
+    "name": "Jeet Vaishnav",
+    "email": "jeetvaishnav@gmail.com",
+    "username": "jeet",
+    "password": "Test123",
+    "isAdmin": false
+  },
+  {
+    "id": "4",
+    "name": "Admin",
+    "email": "admin@gmail.com",
+    "username": "admin",
+    "password": "Admin123",
+    "isAdmin": true
+  }
+]
